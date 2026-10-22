@@ -1,4 +1,4 @@
-type eventWithTime = unknown;
+import { eventWithTime } from "@rrweb/types";
 //#region src/config/VizoraConfig.d.ts
 interface VizoraPrivacyConfig {
   includeQueryString?: boolean;
@@ -106,6 +106,7 @@ export declare class Vizora {
 //#region src/replay/Recorder.d.ts
 interface Recorder {
   start(onEvent: (event: eventWithTime) => void): void;
+  takeFullSnapshot(): void;
   stop(): void;
 }
 //#endregion
@@ -114,6 +115,7 @@ export declare class ReplayRecorder implements Recorder {
   private stopRecording;
   start(onEvent: (event: eventWithTime) => void): void;
   stop(): void;
+  takeFullSnapshot(): void;
 }
 //#endregion
 //#region src/index.d.ts

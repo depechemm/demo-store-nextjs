@@ -4415,6 +4415,10 @@ var ReplayRecorder = class {
 		this.stopRecording();
 		this.stopRecording = null;
 	}
+	takeFullSnapshot() {
+		if (this.stopRecording === null) return;
+		record.takeFullSnapshot();
+	}
 };
 //#endregion
 //#region src/replay/ReplayChunkFactory.ts
@@ -4490,6 +4494,9 @@ var ReplayManager = class {
 	}
 	stop() {
 		this.recorder.stop();
+	}
+	takeFullSnapshot() {
+		this.recorder.takeFullSnapshot();
 	}
 	bufferedEventsCount() {
 		return this.buffer.size();
@@ -4688,6 +4695,7 @@ var Vizora = class {
 		}, fromUrl);
 		const replayFlushPromise = this.replayManager !== null ? this.flushReplay() : null;
 		this.pageManager.renewPageId();
+		this.replayManager?.takeFullSnapshot();
 		this.enqueueEvent(EventType$1.PAGE_VIEW);
 		await this.flushIfNeeded();
 		if (replayFlushPromise !== null) await replayFlushPromise;
