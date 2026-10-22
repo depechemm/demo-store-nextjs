@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Pre-built third-party browser SDK.
+    "src/vendor/vizora/index.js",
   ]),
 ]);
 

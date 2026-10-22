@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages } from "next-intl/server"
 import { Toaster } from "sonner"
+import { VizoraAnalytics } from "@/components/analytics/vizora-analytics"
 import { siteConfig } from "@/lib/config"
 import "./globals.css"
 
@@ -55,6 +56,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-white">
+        <VizoraAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
